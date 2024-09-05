@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Flex, Spinner, Text } from '@chakra-ui/react';
 import UserCard from './UserCard';
+import { BASE_URL } from '../App';
 
 type User = {
   id: number;
@@ -21,7 +22,7 @@ const Users = ({ users, setUsers }: UsersProps) => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/friends');
+        const res = await fetch(BASE_URL + "/friends");
         const data = await res.json();
 
         if (!res.ok) {

@@ -4,6 +4,7 @@ import {
   Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Input, Flex, FormControl, FormLabel, Textarea, RadioGroup, Radio, useToast
 } from '@chakra-ui/react';
 import { BiAddToQueue } from 'react-icons/bi';
+import { BASE_URL } from '../App';
 
 export type User = {
   id: number;
@@ -32,7 +33,7 @@ const CreateUserModel = ({ setUsers }: CreateUserModelProps) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/friends', {
+      const res = await fetch(BASE_URL + "/friends",{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -18,6 +18,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { BiEditAlt } from 'react-icons/bi';
+import { BASE_URL } from '../App';
 
 type User = {
   id: number;
@@ -47,7 +48,7 @@ const EditModal = ({ setUsers, user }: EditModalProps) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/friends/${user.id}`, {
+      const res = await fetch(BASE_URL + "/friends/" + user.id,  {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardHeader, CardBody, Flex, Avatar, Box, Heading, Text, IconButton, useToast } from '@chakra-ui/react';
 import { BiTrash } from 'react-icons/bi';
 import EditModal from './EditModal';
+import { BASE_URL } from '../App';
 
 type User = {
   id: number;
@@ -21,7 +22,7 @@ const UserCard = ({ user, setUsers }: UsersProps) => {
 
   const handleDeleteUser = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/friends/${user.id}`, {
+      const res = await fetch(BASE_URL + "/friends/" + user.id, {
         method: 'DELETE',
       });
       const data = await res.json();
