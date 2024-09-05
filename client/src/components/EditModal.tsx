@@ -28,7 +28,7 @@ type User = {
 };
 
 type EditModalProps = {
-  user: User; 
+  user: User;
   setUsers: React.Dispatch<React.SetStateAction<User[]>>;
 };
 
@@ -43,7 +43,7 @@ const EditModal = ({ setUsers, user }: EditModalProps) => {
 
   const toast = useToast();
 
-  const handleEditUser = async (e: React.FormEvent) => {
+  const handleEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     try {
@@ -56,28 +56,28 @@ const EditModal = ({ setUsers, user }: EditModalProps) => {
       });
       const data = await res.json();
       if (!res.ok) {
-		throw new Error(data.error);
-	}
-	setUsers((prevUsers) => prevUsers.map((u) => (u.id === user.id ? data : u)));
-	toast({
-		status: "success",
-		title: "Yayy! 🎉",
-		description: "Friend updated successfully.",
-		duration: 2000,
-		position: "top-right",
-	});
-	onClose();
-} catch (error) {
-	toast({
-		status: "error",
-		title: "An error occurred.",
-		description: "Unable to update friend.",
-		duration: 4000,
-		position: "top-right",
-	});
-} finally {
-	setIsLoading(false);
-}
+        throw new Error(data.error);
+      }
+      setUsers((prevUsers) => prevUsers.map((u) => (u.id === user.id ? data : u)));
+      toast({
+        status: "success",
+        title: "Yayy! 🎉",
+        description: "Friend updated successfully.",
+        duration: 2000,
+        position: "top-right",
+      });
+      onClose();
+    } catch (error) {
+      toast({
+        status: "error",
+        title: "An error occurred.",
+        description: "Unable to update friend.",
+        duration: 4000,
+        position: "top-right",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -104,7 +104,7 @@ const EditModal = ({ setUsers, user }: EditModalProps) => {
                   <Input
                     placeholder="John Doe"
                     value={inputs.name}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setInputs((prev) => ({ ...prev, name: e.target.value }))
                     }
                   />
@@ -115,7 +115,7 @@ const EditModal = ({ setUsers, user }: EditModalProps) => {
                   <Input
                     placeholder="Software Engineer"
                     value={inputs.role}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setInputs((prev) => ({ ...prev, role: e.target.value }))
                     }
                   />
@@ -127,7 +127,7 @@ const EditModal = ({ setUsers, user }: EditModalProps) => {
                   resize="none"
                   placeholder="He's a software engineer who loves to code and build things."
                   value={inputs.description}
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                     setInputs((prev) => ({
                       ...prev,
                       description: e.target.value,
