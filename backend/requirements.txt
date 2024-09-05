@@ -12,3 +12,5 @@ SQLAlchemy==2.0.34
 typing-extensions==4.12.2
 werkzeug==3.0.4
 zipp==3.20.1
+gunicorn==20.1.0
+
